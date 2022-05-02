@@ -1,6 +1,4 @@
 # AIPOSIZI1
-### The app is available at the link below (old version using http module)
-[aipoisizi.herokuapp.com](https://aipoisizi.herokuapp.com)
 
 ### Installing and deploying
 If you want to deploy this app on `localhost`, first of all you need to install Node JS.
