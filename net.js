@@ -143,7 +143,19 @@ let server = net.createServer((con) => {
                         console.log('404: Not Found');
                     }
 				}
-			}
+				else {
+                    con.write('HTTP/1.1 200 OK\n');
+                    con.write('Access-Control-Allow-Origin: *\n');
+                    con.write('Access-Control-Allow-Methods: ' + methods.join(', ') + '\n');
+                    con.write('Content-Type: ' + type + '\n');
+                    con.write('Content-Length: ' + data.byteLength + '\n\n');
+                    con.write(data);
+                    con.destroy();
+                    fs.appendFileSync(__dirname + '/logs.txt', 'file is shown\n');
+                    console.log('file is shown');
+                }
+				
+			});
         }
     });
 });
