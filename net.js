@@ -120,8 +120,28 @@ let server = net.createServer((con) => {
                                 fs.appendFileSync(__dirname + '/logs.txt', url + ' contents is shown\n');
                                 console.log('directory contents is shown');
                             }
-						}
+                            else {
+                                body = 'Not Found';
+                                con.write('HTTP/1.1 404 Not Found\n');
+                                con.write('Content-Type: text/plain\n');
+                                con.write('Content-Length: ' + body.length + '\n\n');
+                                con.write(body);
+                                con.destroy();
+                                fs.appendFileSync(__dirname + '/logs.txt', '404: Not Found\n');
+                                console.log('404: Not Found');
+                            }
+                        })
 					}
+					else {
+                        body = 'Not Found';
+                        con.write('HTTP/1.1 404 Not Found\n');
+                        con.write('Content-Type: text/plain\n');
+                        con.write('Content-Length: ' + body.length + '\n\n');
+                        con.write(body);
+                        con.destroy();
+                        fs.appendFileSync(__dirname + '/logs.txt', '404: Not Found\n');
+                        console.log('404: Not Found');
+                    }
 				}
 			}
         }
